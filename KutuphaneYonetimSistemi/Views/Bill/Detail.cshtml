@@ -1,0 +1,99 @@
+﻿@model KutuphaneYonetimSistemi.Models.Fatura.Fatura_View_Model
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Detail</h2>
+<hr />
+<div class="col-md-12 row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="2" scope="col">Sipariş Bilgileri</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">   @Html.DisplayNameFor(model => model.TBLFatura_Duzenle.Uye_ID)</th>
+                    <td>    @Html.DisplayFor(model => model.TBLFatura_Duzenle.Uye_ID)</td>
+                </tr>
+                <tr>
+                    <th scope="row">   @Html.DisplayNameFor(model => model.TBLFatura_Duzenle.Aldığı_Tarih)</th>
+                    <td>    @Html.DisplayFor(model => model.TBLFatura_Duzenle.Aldığı_Tarih)</td>
+                </tr>
+                <tr>
+                    <th scope="row">   @Html.DisplayNameFor(model => model.TBLFatura_Duzenle.Teslim_Tarihi)</th>
+                    <td>    @Html.DisplayFor(model => model.TBLFatura_Duzenle.Teslim_Tarihi)</td>
+                </tr>
+                <tr>
+                    <th scope="row">     @Html.DisplayNameFor(model => model.TBLFatura_Duzenle.Aldı)</th>
+                    <td>     @Html.DisplayFor(model => model.TBLFatura_Duzenle.Aldı)</td>
+                </tr>
+                <tr>
+                    <th scope="row">     @Html.DisplayNameFor(model => model.TBLFatura_Duzenle.Verdi)</th>
+                    <td>      @Html.DisplayFor(model => model.TBLFatura_Duzenle.Verdi)</td>
+                </tr>
+                <tr>
+                    <th scope="row">      @Html.DisplayNameFor(model => model.TBLFatura_Duzenle.Adress)</th>
+                    <td>       @Html.DisplayFor(model => model.TBLFatura_Duzenle.Adress)</td>
+                </tr>
+                <tr>
+                    <th scope="row">     @Html.DisplayNameFor(model => model.TBLFatura_Duzenle.Tel)</th>
+                    <td>       @Html.DisplayFor(model => model.TBLFatura_Duzenle.Tel)</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr />
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Kitap Ad</th>
+                    <th scope="col">Yazar</th>
+                    <th scope="col">Kategori</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.TBLKITAP_List)
+                {
+                    <tr>
+                        <th scope="row">@item.AD</th>
+                        @foreach (var x in Model.TBLYazar)
+                        {
+                            if (item.YAZAR == x.ID)
+                            {
+                                <td>@x.AD @x.SOYAD</td>
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        @foreach (var x in Model.TBL_Kategori)
+                        {
+                            if (item.KATEGORI == x.ID)
+                            {
+                                <td>@x.AD</td>
+                            }
+                            else
+                            {
+
+                            }
+                        }
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+    <div class="col-md-3"></div>
+</div>

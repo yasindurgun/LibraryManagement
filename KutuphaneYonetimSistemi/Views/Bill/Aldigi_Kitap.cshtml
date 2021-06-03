@@ -1,0 +1,58 @@
+﻿@model KutuphaneYonetimSistemi.Models.Sepet
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model.Urunler)
+            {
+                <tr>
+                    <th scope="row">
+                        @item.Kitap_Ad
+                    </th>
+                    <td>@item.Yazar_Ad_Soyad</td>
+                    <td>@item.Kategori_Ad</td>
+                    <td>@item.Tutar</td>
+                    <td><a href="/Bill/Sepet_Adet_Sil/@item.ID">Delete</a></td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <th scope="row">
+
+                </th>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+            </tr>
+        }
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="2">
+                <a href="/Fatura/Sepet_Temizle" class="btn btn-danger col-md-12">Clean the bag</a>
+            </td>
+            <td colspan="2">
+                @if (Model != null) { 
+                @Model.ToplamTutar.ToString("C2")
+                }
+                else
+                {
+
+                }
+            </td>
+        </tr>
+    </tfoot>
+</table>

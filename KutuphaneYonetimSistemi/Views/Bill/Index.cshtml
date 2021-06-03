@@ -1,0 +1,83 @@
+﻿@model KutuphaneYonetimSistemi.Models.Fatura.Fatura_View_Model
+@{
+    ViewBag.Title = "Request Book";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Fatura List</h2>
+<div class="col-md-12">
+    <a class="btn btn-info col-md-12" href="/Bill/Fatura_Baslik">Add</a>
+</div>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Provided</th>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Address</th>
+            <th scope="col">Date of Taken</th>
+            <th scope="col">Date of Given</th>
+            <th scope="col">Details</th>
+            <th scope="col">Delete</th>
+            <th scope="col">PDF</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.TBLFatura)
+        {
+            <tr>
+                <th>
+                    @if (item.Verdi == true)
+                    {
+                        <img src="~/Content/verdi.png" height="50" />
+                    }
+                    else if (item.Verdi == false)
+                    {
+                        <img src="~/Content/vermedi.png" height="50" />
+                    }
+                </th>
+                <th scope="row">@item.ID</th>
+                @foreach (var x in Model.TBLUYELER)
+                {
+                    if (item.Uye_ID == x.ID)
+                    {
+                        <td>@x.AD @x.SOYAD</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                }
+
+                <td>
+                    @item.Tel
+                </td>
+                <td>@item.Adress</td>
+                <td>  @Convert.ToDateTime(item.Aldığı_Tarih).ToString("dd/MMMM/yyyy")</td>
+
+
+                @if (item.Teslim_Tarihi == null)
+                {
+                    <td></td>
+                }
+                else
+                {
+                    @Convert.ToDateTime(item.Teslim_Tarihi).ToString("dd/MMMM/yyyy")
+                }
+
+                <td>
+                    <a href="/Bill/Detail/@item.ID" class="btn btn-warning">Detail</a>
+                </td>
+                <td>
+                    <a href="/Bill/Delete/@item.ID" class="btn btn-danger">Delete</a>
+                </td>
+                <td>
+                    <a href="/Bill/Detail/@item.ID" class="btn btn-success">Take a PDF </a>
+                </td>
+            </tr>
+
+        }
+
+    </tbody>
+</table> 

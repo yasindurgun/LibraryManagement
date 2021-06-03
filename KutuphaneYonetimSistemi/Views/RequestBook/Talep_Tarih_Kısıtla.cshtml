@@ -1,0 +1,276 @@
+﻿@model IEnumerable<KutuphaneYonetimSistemi.Models.Entity.TBL_Kitap_Talep>
+@{
+    ViewBag.Title = "Fatura_Kısıtla";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Siparişler</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Main Page</a></li>
+                        <li class="breadcrumb-item active">Order</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    @*<div class=" col-md-12 form-group">
+            <a class="btn btn-info col-md-12" href="/Anasayfa/Stok_Ekle"> <span class="fa fa-plus">Yeni Ekle</span></a>
+        </div>*@
+   
+    <form action="/RequestBook/Talep_Tarih_Kısıtla/" method="get">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+        <script>
+
+            $(function () {
+
+                $("#tarih").datepicker({
+
+                    dateFormat: "dd-mm-yy",
+
+                    altFormat: "yy-mm-dd",
+
+                    altField: "#tarih-db",
+
+                    monthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+
+                    dayNamesMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+
+                    firstDay: 1
+
+                });
+
+
+
+            });
+
+
+        </script>
+        <script>
+
+            $(function () {
+
+                $("#tarih2").datepicker({
+
+                    dateFormat: "dd-mm-yy",
+
+                    altFormat: "yy-mm-dd",
+
+                    altField: "#tarih-db",
+
+                    monthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+
+                    dayNamesMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+
+                    firstDay: 1
+
+                });
+
+
+
+            });
+        </script>
+        <div class="col-md-12 row">
+            <div class="col-md-8 row">
+                <div class="col-md-3">
+                    <label class="form-control">Filter:</label>
+                </div>
+                <div class="col-md-3">
+                    <input class="form-control col-md-12" value="@DateTime.Now.ToString("dd/MM/yyyy")" name="Tarih2" id="tarih" type="text">
+                </div>
+                <div class="col-md-3">
+                    <input class="form-control col-md-12" value="@DateTime.Now.ToString("dd/MM/yyyy")" name="Tarih3" id="tarih2" type="text">
+                </div>
+                <div class="col-md-3">
+                    <select name="Secenek" class="form-control" required>
+                        <option value="1">Provided</option>
+                        <option value="0">Waiting</option>
+                        <option value="2">All</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <input type="submit" class="form-control" name="Submit" value="List" />
+            </div>
+        </div>
+        <script type="text/javascript">
+            function toggleMe(obj, a) {
+                var e = document.getElementById(a);
+                if (!e) return true;
+                e.style.display = "block"
+                return true;
+            }
+            function toggleMe2(obj, a) {
+                var e = document.getElementById(a);
+                if (!e) return true;
+                e.style.display = "none"
+                return true;
+            }
+
+
+        </script>
+        <script>
+
+            $(function () {
+
+
+
+                //tarih nesnesinin oluşturulması
+
+                $("#tarih").datepicker();
+
+
+
+
+
+            });
+
+
+            $("#tarih").datepicker({
+
+                dateFormat: "dd-mm-yy",
+
+                altFormat: "yy-mm-dd",
+
+                altField: "#tarih-db",
+
+                monthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+
+                dayNamesMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+
+                firstDay: 1
+
+            });
+        </script>
+    </form>
+    <!-- Main content -->
+    <br />
+    <hr />
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+
+
+                    <div class="card">
+
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Durum</th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Kitap_Ad)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Yazar_Ad)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Kategori_Ad)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.İstenilme_Tarihi)
+                                        </th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                        <th>Provided</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @if (item.Temin_Edildi == true)
+                                                {
+                                                    <img src="~/Content/verdi.png" height="50" />
+                                                }
+                                                else if (item.Bekleniyor == true)
+                                                {
+                                                    <img src="~/Content/bekleniyor.png" height="50" />
+                                                }
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Kitap_Ad)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Yazar_Ad)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Kategori_Ad)
+                                            </td>
+                                            <td>
+                                               @{ 
+                                                   DateTime a = Convert.ToDateTime(item.İstenilme_Tarihi); 
+                                               }
+                                                @a.ToString("dd/MMMM/yyyy")
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-warning" href="/RequestBook/Düzenle/@item.ID">Edit</a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-danger" href="/RequestBook/Sil/@item.ID">Delete</a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-success" href="/RequestBook/Temin_Et/@item.ID">Provided</a>
+                                            </td>
+                                        </tr>
+                                    }
+
+
+
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        @*<th>Durum</th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Kitap_Ad)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Yazar_Ad)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Kategori_Ad)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.İstenilme_Tarihi)
+                                        </th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                        <th>Provided</th>*@
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+
+

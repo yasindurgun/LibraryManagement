@@ -1,0 +1,68 @@
+﻿@model KutuphaneYonetimSistemi.Models.Fatura.Fatura_View_Model
+@{
+    ViewBag.Title = "Fatura_Kalem";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Fatura_Baslik</h2>
+<hr />
+<div class="alert alert-primary form-group" style="background-color:yellow;color:black;" role="alert">
+    You can add at most 4 books.Pay Attention Please !!!!
+</div>
+
+<div class="col-md-12 row form-group">
+    <div class="col-md-6">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name of Book</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Add to Bag</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.TBLKITAP_List)
+                {
+                    <tr>
+                        <th scope="row">@item.AD</th>
+                        @foreach (var x in Model.TBLYazar)
+                        {
+                            if (item.YAZAR == x.ID)
+                            {
+                                <td>@x.AD @x.SOYAD</td>
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        @foreach (var x in Model.TBL_Kategori)
+                        {
+                            if (item.KATEGORI == x.ID)
+                            {
+                                <td>@x.AD</td>
+                            }
+                            else
+                            {
+
+                            }
+                        }
+                        <td>
+                            <a class="btn btn-info" href="/Bill/Sepet_Ekle/@item.ID">Add to bag</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        @Html.Action("Aldigi_Kitap")
+    </div>
+</div>
+<div class="col-md-12">
+    <a href="/Bill/Siparis_Kaydet" class="col-md-12 btn btn-success">Save</a>
+</div>
+
+

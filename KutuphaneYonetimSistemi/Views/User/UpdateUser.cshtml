@@ -1,0 +1,67 @@
+﻿@model KutuphaneYonetimSistemi.Models.Entity.TBLUYELER
+@{
+    ViewBag.Title = "UpdateUser";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>UpdateUser</h2>
+
+@using (Html.BeginForm("SaveUser", "User", FormMethod.Post))
+{
+    <div style="margin-bottom:15px"></div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.ID)
+        @Html.TextBoxFor(c => c.ID, new { @class = "form-control" })
+
+        <br />
+        @Html.LabelFor(c => c.AD)
+        @Html.TextBoxFor(c => c.AD, new { @class = "form-control" })
+
+        <br />
+        @Html.LabelFor(c => c.SOYAD)
+        @Html.TextBoxFor(c => c.SOYAD, new { @class = "form-control" })
+
+        <br />
+        @Html.LabelFor(c => c.MAIL)
+        @Html.TextBoxFor(c => c.MAIL, new { @class = "form-control" })
+
+        <br />
+        @Html.LabelFor(c => c.KULLANICIADI)
+        @Html.TextBoxFor(c => c.KULLANICIADI, new { @class = "form-control" })
+
+        <br />
+        @Html.LabelFor(c => c.SIFRE)
+        @Html.TextBoxFor(c => c.SIFRE, new { @class = "form-control" })
+
+        <br />
+        @Html.LabelFor(c => c.FOTOGRAF)
+        @Html.TextBoxFor(c => c.FOTOGRAF, new { @class = "form-control" })
+
+        <br />
+        @Html.LabelFor(c => c.TELEFON)
+        @Html.TextBoxFor(c => c.TELEFON, new { @class = "form-control" })
+
+        <br />
+        @Html.LabelFor(c => c.OKUL)
+        @Html.TextBoxFor(c => c.OKUL, new { @class = "form-control" })
+
+        <br />
+        @Html.LabelFor(c => c.LIBRARYID)
+        @Html.DropDownListFor(c => c.Libraries.LibrariesID, (List<SelectListItem>)ViewBag.value3, new { @class = "form-control" })
+        <br />
+
+        @Html.LabelFor(c => c.DETAY)
+        @Html.TextBoxFor(c => c.DETAY, new { @class = "form-control" })
+
+
+
+        <br />
+
+    </div>
+    <div>
+
+        <button class="btn btn-warning"> Update</button>
+    </div>
+}
+
+

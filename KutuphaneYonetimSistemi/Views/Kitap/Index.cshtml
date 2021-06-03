@@ -1,0 +1,93 @@
+﻿@using KutuphaneYonetimSistemi.Models.Entity
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+
+}
+<h2>Kitap Sayfası</h2>
+<table>
+    <tr>
+        <th>
+            @using (Html.BeginForm("Index", "Kitap", FormMethod.Get))
+            {
+                <div style="margin-bottom:15px; margin-top: 15px;">
+                    <b style="font-size:10px;">Aranacak Kitap Adını Girin:</b> @Html.TextBox("p", "", new { maxlength = 50, size = 10 })
+                    <input type="submit" value="Ara" class="btn btn-success" />
+                </div>
+            }
+        </th>
+        <th>
+            @using (Html.BeginForm("yazarara", "Kitap", FormMethod.Get))
+            {
+                <div style="margin-bottom:15px; margin-top: 15px; margin-left:25px;">
+                    <b style="font-size:10px;">Aranacak Yazar Adını Girin:</b> @Html.TextBox("x", "", new { maxlength = 50, size = 10 })
+                    <input type="submit" value="Ara" class="btn btn-success" />
+                </div>
+            }
+        </th>
+
+        <th>
+            @using (Html.BeginForm("barkodara", "Kitap", FormMethod.Get))
+            {
+                <div style="margin-bottom:15px; margin-top: 15px; margin-left:25px;">
+                    <b style="font-size:10px;">Aranacak Barkod Adını Girin:</b> @Html.TextBox("y", "", new { maxlength = 50, size = 10 })
+                    <input type="submit" value="Ara" class="btn btn-success" />
+                </div>
+            }
+        </th>
+
+        <th>
+            @using (Html.BeginForm("ozetara", "Kitap", FormMethod.Get))
+            {
+                <div style="margin-bottom:15px; margin-top: 15px; margin-left:25px;">
+                    <b style="font-size:10px;">AranacakÖzeti Girin:</b> @Html.TextBox("z", "", new { maxlength = 50, size = 10 })
+                    <input type="submit" value="Ara" class="btn btn-success" />
+                </div>
+            }
+        </th>
+    </tr>
+</table>
+
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Book Name</th>
+        <th>Book Author</th>
+        <th>Category</th>
+        <th>Publish Date</th>
+        <th>Publisher</th>
+        <th>Page</th>
+        <th>Statu</th>
+        <th>Barcode</th>
+        <th>Summary</th>
+        <th>Book Image</th>
+        <th>Library Name</th>
+        <th>Delete</th>
+        <th>Update</th>
+    </tr>
+
+    @foreach (var k in Model)
+    {
+<tr>
+    <td>@k.ID</td>
+    <td>@k.AD</td>
+    <td>@k.TBLYAZAR.AD @k.TBLYAZAR.SOYAD</td>
+    <td>@k.TBLKATEGORI.AD</td>
+    <td>@k.BASIMYIL</td>
+    <td>@k.YAYINEVI</td>
+    <td>@k.SAYFA</td>
+    <td>@k.DURUM</td>
+    <td>@k.BARKODNO</td>
+    <td><textarea maxlength="50"> @k.SUMMARY</textarea> </td>
+    <td>@k.KITAPRESIM</td>
+    <td>@k.Libraries.LibraryName</td>
+    <td><a href="/Kitap/KitapSil/@k.ID" class="btn btn-danger">Sil</a></td>
+    <td><a href="/Kitap/KitapGetir/@k.ID" class="btn btn-success">Güncelle</a></td>
+</tr>
+        }
+</table>
+
+<a href="/Kitap/KitapEkle" class="btn btn-primary">Yeni Kitap Ekle</a>
+

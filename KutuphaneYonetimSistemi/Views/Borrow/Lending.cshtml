@@ -1,0 +1,46 @@
+﻿
+@model KutuphaneYonetimSistemi.Models.Entity.TBLHAREKET
+@{
+    ViewBag.Title = "Lending";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Lending</h2>
+
+
+@using (Html.BeginForm("UpdateLending", "Borrow", FormMethod.Post))
+{
+    <div style="margin-bottom:15px"></div>
+    <div class="form-group">
+        <label> ID</label>
+        @Html.TextBoxFor(c => c.ID, new { @class = "form-control" })
+
+        <br />
+        <label> bookName</label>
+        
+        @Html.TextBoxFor(c => c.TBLKITAP.AD, new { @class = "form-control" })
+        <br />
+
+        <label> UserName</label>
+        @Html.TextBoxFor(c => c.TBLUYELER.AD, new { @class = "form-control" })
+
+        <br />
+        <label> ActionBeginningDate</label>
+        @Html.TextBoxFor(c => c.ALISTARIH, "{0:dd.MM.yyyy}", new { @class = "form-control" })
+        <br />
+        <br />
+        <label> ActionFinishDate</label>
+        @Html.TextBoxFor(c => c.IADETARIH, "{0:dd.MM.yyyy}", new { @class = "form-control" })
+        <br />
+        <label>The Date Brought By The Member</label>
+        <input type="text" class="form-control" name="userLendingTime" value="@DateTime.Now.ToShortDateString()" />
+        <br />
+        <label>Number of days arriving late</label>
+        <input type="text" class="form-control" id="Lateinput" value="@ViewBag.dgr" />
+        
+    </div>
+    <div>
+
+        <button class="btn btn-warning"> Lending</button>
+    </div>
+}

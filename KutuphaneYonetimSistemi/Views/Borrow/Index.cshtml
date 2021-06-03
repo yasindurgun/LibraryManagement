@@ -1,0 +1,43 @@
+﻿
+@using KutuphaneYonetimSistemi.Models.Entity
+@model List<TBLHAREKET>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<table class="table table-bordered">
+
+    <tr>
+        <th>Action id</th>
+        <th>Book Name</th>
+        <th>User name</th>
+        <th>Worker Name</th>
+        <th>Borrow date</th>
+        <th>Landing date</th>
+        
+   
+        <th>Landing book</th>
+
+    </tr>
+
+    @foreach (var book in Model)
+    {
+        <tr>
+            <td>@book.ID</td>
+            <td>@book.TBLKITAP.AD</td>
+            <td>@book.TBLUYELER.AD&nbsp @book.TBLUYELER.SOYAD </td>
+            <td>@book.TBLPERSONEL.PERSONEL</td>
+            <td>@Convert.ToDateTime(book.ALISTARIH).ToString("dd/MM/yyyy")</td>
+            <td>@Convert.ToDateTime(book.IADETARIH).ToString("dd/MM/yyyy")</td>
+     
+            <td><a href="/Borrow/Lending/@book.ID" class="btn btn-success" style="background-color:#ff6a00">Lending</a></td>
+          
+        </tr>
+    }
+    
+</table>

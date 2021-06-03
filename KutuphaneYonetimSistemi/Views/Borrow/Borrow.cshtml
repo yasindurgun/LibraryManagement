@@ -1,0 +1,40 @@
+﻿@model KutuphaneYonetimSistemi.Models.Entity.TBLHAREKET
+@{
+    ViewBag.Title = "Borrow";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Borrow</h2>
+
+<form class="form-group" method="post">
+    <div></div>
+    <div style="margin-top:15px">
+        <label>User id</label>
+        @Html.TextBoxFor(b => b.TBLUYELER.AD, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Book id</label>
+        @Html.TextBoxFor(b => b.TBLKITAP.AD, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Book Worker</label>
+        @Html.TextBoxFor(b => b.TBLPERSONEL.PERSONEL, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Borrow Date</label>
+        <input type="text" class="form-control" name="ActionBeginningDate" value="@DateTime.Now.ToShortDateString()" style="" />
+    </div>
+    <div style="margin-top:15px">
+        <label>Lending Date</label>
+        <input type="text" class="form-control" name="ActionFinishDate" value="@DateTime.Now.AddDays(7).ToShortDateString()" />
+   
+    
+    </div>
+
+
+    <div></div>
+    <br />
+    <button class=" btn btn-info" id="Button1">Borrow Book</button>
+    <input type="hidden" value="False" name="bookCase" /> 
+
+</form>

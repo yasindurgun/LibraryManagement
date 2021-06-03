@@ -1,0 +1,82 @@
+﻿@model KutuphaneYonetimSistemi.Models.Fatura.Fatura_View_Model
+
+@{
+    ViewBag.Title = "Fatura_Baslik";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Bill Title</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.TBLFatura_Duzenle.Uye_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select class="form-control" name="UYE_ID">
+                    @foreach (var item in Model.TBLUYELER)
+                    {
+                        <option value="@item.ID">@item.AD @item.SOYAD</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TBLFatura_Duzenle.Aldığı_Tarih, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="datetime-local" class="form-control" name="aldigitarih" required />
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TBLFatura_Duzenle.Aldı, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.TBLFatura_Duzenle.Aldı, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TBLFatura_Duzenle.Aldı, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TBLFatura_Duzenle.Verdi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.TBLFatura_Duzenle.Verdi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TBLFatura_Duzenle.Verdi, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TBLFatura_Duzenle.Adress, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TBLFatura_Duzenle.Adress, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TBLFatura_Duzenle.Adress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TBLFatura_Duzenle.Tel, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TBLFatura_Duzenle.Tel, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TBLFatura_Duzenle.Tel, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

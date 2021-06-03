@@ -1,0 +1,22 @@
+﻿@model KutuphaneYonetimSistemi.Models.Entity.TBLPERSONEL
+@{
+    ViewBag.Title = "PersonelEkle";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<form method="post" class="form-group">
+    <div>
+        <br />
+        <label>
+            Personel Adı
+        </label>
+        @*<input type="text" class="form-control" name="PERSONEL" value="" />*@
+
+        @Html.TextBoxFor(x => x.PERSONEL, new { @class ="form-control"})
+        @Html.ValidationMessageFor(x => x.PERSONEL, "", new { @style="color:red" })
+    </div>
+
+    <div style="margin-top:15px">
+        <button class="btn btn-info" id="Btn1">Personel Ekle</button>
+    </div>
+</form>

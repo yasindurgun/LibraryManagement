@@ -1,0 +1,144 @@
+﻿
+
+@{
+    Layout = null;
+}
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/Admin_Assest/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/Admin_Assest/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="/Admin_Assest/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+        }
+
+        .sidebar {
+            height: 100%;
+            width: 220px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 16px;
+        }
+
+            .sidebar a {
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 20px;
+                color: #818181;
+                display: block;
+            }
+
+                .sidebar a:hover {
+                    color: #f1f1f1;
+                }
+
+        .main {
+            margin-left: 220px; /* Same as the width of the sidenav */
+            padding: 0px 10px;
+        }
+
+        @@media screen and (max-height: 450px) {
+            .sidebar {
+                padding-top: 15px;
+            }
+
+                .sidebar a {
+                    font-size: 18px;
+                }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <a href="#home"><i class="glyphicon glyphicon-home"></i> &nbsp; Main Page</a>
+        <a href="/Kategori/Index/"><i class="glyphicon glyphicon-list"></i> &nbsp; Categories</a>
+        <a href="/Kitap/Index/"><i class="glyphicon glyphicon-book"></i> &nbsp; Books</a>
+        <a href="/Yazar/Index/"><i class="glyphicon glyphicon-pencil"></i> &nbsp; Authors</a>
+        <a href="/User/Index/"><i class="glyphicon glyphicon-user"></i> &nbsp; Users</a>
+        <a href="/Personel/Index/"><i class="glyphicon glyphicon-tower"></i> &nbsp; Staff</a>
+        <a href="/Borrow/Index/"><i class="glyphicon glyphicon-circle-arrow-right"></i> &nbsp; Lend a Book</a>
+        <a href="/Borrow/Borrow/"><i class="glyphicon glyphicon-circle-arrow-left"></i> &nbsp; Borrow Books</a>
+
+        <a href="/statistics/Index/"><i class="glyphicon glyphicon-sort"></i> &nbsp; Statistics</a>
+        <a href="#home"><i class="glyphicon glyphicon-euro"></i> &nbsp; Kasa</a>
+        <a href="/Movement/Index/"><i class="glyphicon glyphicon-dashboard"></i> &nbsp; Transactions İşlemler</a>
+        <a href="/Bill/Index/"><i class="glyphicon glyphicon-bitcoin"></i> &nbsp; Bills</a>
+        <a href="/RequestBook/Index/"><i class="glyphicon glyphicon-zoom-in"></i> &nbsp; Make a request</a>
+        <a href="/RequestBook/Talep_Tarih_Kısıtla/"><i class="glyphicon glyphicon-open-file"></i> &nbsp; Get a Report</a>
+        <a href="/statistics/weather/"><i class="glyphicon glyphicon-cloud"></i> &nbsp; Weather Report</a>
+        <a href="/statistics/weatherCard/"><i class="glyphicon glyphicon-plus"></i> &nbsp; Weather Cards</a>
+        <a href="/statistics/gallery/"><i class="glyphicon glyphicon-picture"></i> &nbsp; Gallery</a>
+        <a href="/statistics/LinqCard/"><i class="glyphicon glyphicon-bookmark"></i> &nbsp; Linq Cards</a>
+        <a href="/Vitrin/Index/"><i class="glyphicon glyphicon-gift"></i> &nbsp; Vitrin</a>
+        <a href="#home"><i class="glyphicon glyphicon-cog"></i> &nbsp; Settings</a>
+        <a href="#home"><i class="glyphicon glyphicon-phone"></i> &nbsp; Help</a>
+        <a href="#home"><i class="glyphicon glyphicon-remove"></i> &nbsp; Logout</a>
+    </div>
+
+    <div class="main">
+        @RenderBody()
+    </div>
+
+
+      <!-- jQuery -->
+    <script src="/Admin_Assest/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="/Admin_Assest/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables  & Plugins -->
+    <script src="/Admin_Assest/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="/Admin_Assest/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/Admin_Assest/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/Admin_Assest/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script src="/Admin_Assest/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="/Admin_Assest/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="/Admin_Assest/plugins/jszip/jszip.min.js"></script>
+    <script src="/Admin_Assest/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="/Admin_Assest/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="/Admin_Assest/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="/Admin_Assest/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script src="/Admin_Assest/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="/Admin_Assest/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="/Admin_Assest/dist/js/demo.js"></script>
+    <!-- Page specific script -->
+    <script>
+        $(function () {
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": true,
+                "responsive": true,
+            });
+        });</script>
+
+    <script src="~/Content/tinymce/tinymce.js"></script>
+    <script src="~/Content/tinymce/tinymce.min.js"></script>
+    <script src="~/Content/tinymce/jquery.tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',  // change this value according to your HTML
+            auto_focus: 'element1'
+        });
+    </script>
+
+</body>
+</html>
+

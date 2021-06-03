@@ -1,0 +1,73 @@
+﻿@model KutuphaneYonetimSistemi.Models.Entity.TBLUYELER
+@{
+    ViewBag.Title = "AddUser";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>AddUser</h2>
+
+<form class="form-group" method="post">
+    <div></div>
+    <div style="margin-top:15px">
+        <label>User Name</label>
+        <input type="text" class="form-control" name="AD" />
+
+    </div>
+    <div></div>
+    <div style="margin-top:15px">
+        <label>User Surname</label>
+        <input type="text" class="form-control" name="SOYAD" />
+
+    </div>
+    <div></div>
+    <div style="margin-top:15px">
+        <label>User  Mail</label>
+        <input type="text" class="form-control" name="MAIL" />
+
+    </div>
+    <div></div>
+    <div style="margin-top:15px">
+        <label>User Username</label>
+        <input type="text" class="form-control" name="KULLANICIADI" />
+
+    </div>
+    <div></div>
+    <div style="margin-top:15px">
+        <label>User  Password</label>
+        <input type="text" class="form-control" name="SIFRE" />
+
+    </div>
+    <div></div>
+    <div style="margin-top:15px">
+        <label>User  Picture</label>
+        <input type="text" class="form-control" name="FOTOGRAF" />
+
+    </div>
+    <div></div>
+    <div style="margin-top:15px">
+        <label>User Phone</label>
+        <input type="text" class="form-control" name="TELEFON" />
+
+    </div>
+    <div></div>
+    <div style="margin-top:15px">
+        <label>User School</label>
+        <input type="text" class="form-control" name="OKUL" />
+
+    </div>
+    <div></div>
+    <div style="margin-top:15px">
+        <label>User Detail</label>
+        <input type="text" class="form-control" name="DETAY" />
+
+    </div>
+    <div style="margin-top:15px">
+        <label>Location</label>
+
+        @Html.DropDownListFor(b => b.Libraries.LibraryName, (List<SelectListItem>)ViewBag.value3, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <button class=" btn btn-info" id="Button1">Add Worker</button>
+    </div>
+
+</form>

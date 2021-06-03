@@ -1,0 +1,22 @@
+﻿@model KutuphaneYonetimSistemi.Models.Entity.TBLKATEGORI
+@{
+    ViewBag.Title = "KategoriGetir";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+@using (Html.BeginForm("KategoriGuncelle", "Kategori", FormMethod.Post))
+{
+        <br />   
+        <div class="form-group">
+            @Html.LabelFor(k => k.ID)
+            @Html.TextBoxFor(k => k.ID, new { @class = "form-control" })
+            <br />
+
+            @Html.LabelFor(k => k.AD)
+            @Html.TextBoxFor(k => k.AD, new { @class = "form-control" })
+
+            <br />
+
+            <button class="btn btn-warning">Güncelle</button>
+        </div>
+    }

@@ -1,0 +1,68 @@
+﻿@using KutuphaneYonetimSistemi.Models.Entity
+@model List<TBLKATEGORI>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Kategoriler</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Critical Situation</th>
+        <th> ID</th>
+        <th> Name</th>
+        <th>Delete</th>
+        <th>Edit</th>
+    </tr>
+
+    @foreach (var ktg in Model)
+    {
+        <tr>
+            <td>
+                @{ DBKUTUPHANEEntities db = new DBKUTUPHANEEntities();
+                    var deger = db.TBLKITAP.ToList();
+                }
+                @foreach (var item in deger.Where(x => x.KATEGORI == ktg.ID))
+                {
+                    if (Session["sayi"] == null)
+                    {
+                        int x = 0;
+                        int y = x + 1;
+                        Session["sayi"] = y;
+                    }
+                    else
+                    {
+                        int f = Convert.ToInt32(Session["sayi"]);
+                        int y = f + 1;
+                        Session["sayi"] = y;
+                    }
+
+                }
+                @{
+                    if (Session["sayi"] == null)
+                    {
+                        Session["sayi"] = 0;
+                    }
+                    string a = Session["sayi"].ToString();
+                    int b = Convert.ToInt32(a);
+                }
+                @if (b < 10)
+                {
+                    <img src="~/Content/indir__2_-removebg-preview_1.png" height="50" alt="Alternate Text" />
+                    Session.Remove("sayi");
+                }
+                else if (b > 10)
+                {
+
+                }
+            </td>
+            <td>@ktg.ID</td>
+            <td>@ktg.AD</td>
+            <td><a href="/Kategori/KategoriSil/@ktg.ID" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Kategori/KategoriGetir/@ktg.ID" class="btn btn-success">Güncelle</a></td>
+        </tr>
+    }
+</table>
+
+<a href="/Kategori/KategoriEkle" class="btn btn-primary">Yeni Kategori Ekle</a>

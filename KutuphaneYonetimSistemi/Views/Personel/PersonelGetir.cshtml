@@ -1,0 +1,26 @@
+﻿@model KutuphaneYonetimSistemi.Models.Entity.TBLPERSONEL
+@{
+    ViewBag.Title = "PersonelGetir";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("PersonelGuncelle", "Personel", FormMethod.Post))
+{
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(p => p.ID)
+        @Html.TextBoxFor(p => p.ID, new { @class = "form-control" })
+        <br />
+
+        @*@Html.LabelFor(p => p.AD)*@
+        <label>PERSONEL ADI</label>
+        @Html.TextBoxFor(p => p.PERSONEL, new { @class = "form-control" })
+
+        <br />
+
+        <button class="btn btn-warning">Güncelle</button>
+    </div>
+}

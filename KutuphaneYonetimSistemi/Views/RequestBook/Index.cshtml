@@ -1,0 +1,68 @@
+﻿@model IEnumerable<KutuphaneYonetimSistemi.Models.Entity.TBL_Kitap_Talep>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<h2>Index</h2>
+<span id="ControllerMessage">@ViewBag.Y</span>
+<p>
+    <a class="btn btn-info col-md-12" href="/RequestBook/Create/">Add</a>
+</p>
+<table class="table">
+    <tr>
+        <th>Durum</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kitap_Ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Yazar_Ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kategori_Ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.İstenilme_Tarihi)
+        </th> 
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Provided</th>
+    </tr> 
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @if (item.Temin_Edildi == true)
+                {
+                    <img src="~/Content/verdi.png" height="50" />
+                }
+                else if (item.Bekleniyor == true)
+                {
+                    <img src="~/Content/bekleniyor.png" height="50" />
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kitap_Ad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Yazar_Ad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kategori_Ad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.İstenilme_Tarihi)
+            </td>
+            <td>
+                <a class="btn btn-warning" href="/Kitap_Taleb/Düzenle/@item.ID">Düzenle</a>
+            </td>
+            <td>
+                <a class="btn btn-danger" href="/Kitap_Taleb/Sil/@item.ID">Sil</a>
+            </td>
+            <td>
+                <a class="btn btn-success" href="/Kitap_Taleb/Temin_Et/@item.ID">Temin Et</a>
+            </td>
+        </tr>
+    }  
+</table>
